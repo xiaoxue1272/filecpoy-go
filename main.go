@@ -128,7 +128,7 @@ func startProcessing(fileInfos []os.FileInfo) {
 		}
 
 		// 复制文件
-		if err := copyFile(srcFilePath, destFilePath, mo); err != nil {
+		if err := copyFile(srcFilePath, destFilePath, modTime); err != nil {
 			stdwarn.Printf("失败 [%s]: %v\n", filename, err)
 			errors++
 		} else {
