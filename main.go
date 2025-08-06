@@ -17,12 +17,12 @@ import (
 )
 
 type Config struct {
-	Src         string `json:"src"`
-	Dest        string `json:"dest"`
-	Extension   string `json:"extension"`
-	IsOverided  bool   `json:"isOverided"`
-	BufferSize  uint64 `json:"bufferSize"`
-	OS          string `json:"os"`
+	Src        string `json:"src"`
+	Dest       string `json:"dest"`
+	Extension  string `json:"extension"`
+	IsOverided bool   `json:"isOverided"`
+	BufferSize uint64 `json:"bufferSize"`
+	OS         string `json:"os"`
 }
 
 var (
@@ -75,10 +75,10 @@ func initConfig() {
 	config.Extension = readScanText()
 	stdout.Println("请输入拷贝文件字节缓冲区大小(MB/默认1MB)")
 	bufferSize, err := strconv.ParseUint(readScanText(), 10, 64)
-	if err != nil {
+	if err == nil && bufferSize != 0 {
 		bufferSize *= Megabyte
 	}
-	config.BufferSize = bufferSize
+	config.BufferSize = Megabyte
 	stdout.Println("是否覆盖已存在文件? [y/N]")
 	config.IsOverided = strings.ToLower(readScanText()) == "y"
 	config.OS = strings.ToLower(runtime.GOOS)
